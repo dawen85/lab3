@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<script src="randominteger.js"></script>
+<script>
+function startGame(){
+    let answer = randomInt();
+    let turns = 10;
+    let guessHistory = [];
+    let gameOver = false;
+
+    while(turns > 0 && !gameOver){
+        let guessStr = prompt(`Remaining ${turns} tries, input number 1‑100\nPrevious guesses: ${guessHistory}`);
+        if(guessStr === null){
+            break;
+        }
+        let guess = Number(guessStr);
+        guessHistory.push(guess);
+
+        if(guess === answer){
+            alert(`You are correct! The answer is ${answer}`);
+            gameOver = true;
+        }else if(guess > answer){
+            alert("Wrong! Your guess is too high.");
+            turns --;
+        }else{
+            alert("Wrong! Your guess is too low.");
+            turns --;
+        }
+    }
+    if(!gameOver){
+        alert(`Game over! No more chances. Correct answer: ${answer}`);
+    }
+    if(confirm("Do you want to play again?")){
+        startGame();
+    }
+}
+startGame();
+</script>
+</body>
+</html>
+
